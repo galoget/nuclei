@@ -219,10 +219,10 @@ func DecodeSID(s string) string {
 
 	var builder strings.Builder
 	builder.WriteString("S-")
-	fmt.Fprintf(&builder, "%d-", revisionLvl)
-	fmt.Fprintf(&builder, "%d", authority)
+	builder.WriteString(fmt.Sprintf("%d-", revisionLvl))
+	builder.WriteString(fmt.Sprintf("%d", authority))
 	for _, v := range subAuthorities {
-		fmt.Fprintf(&builder, "-%d", v)
+		builder.WriteString(fmt.Sprintf("-%d", v))
 	}
 	return builder.String()
 }
